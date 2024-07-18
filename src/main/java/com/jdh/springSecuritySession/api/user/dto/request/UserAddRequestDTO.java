@@ -3,13 +3,13 @@ package com.jdh.springSecuritySession.api.user.dto.request;
 import com.jdh.springSecuritySession.api.user.enums.RoleName;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-@Builder
 public class UserAddRequestDTO {
 
     @NotNull
