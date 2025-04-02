@@ -15,6 +15,7 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository;
 import org.springframework.security.web.servlet.util.matcher.MvcRequestMatcher;
 import org.springframework.web.servlet.handler.HandlerMappingIntrospector;
 
@@ -27,6 +28,8 @@ import org.springframework.web.servlet.handler.HandlerMappingIntrospector;
 public class SecurityConfig {
 
     private final UserGetService userGetService;
+
+    private final HttpSessionCsrfTokenRepository httpSessionCsrfTokenRepository;
 
     private final CustomLoginSuccessHandler customLoginSuccessHandler;
 
@@ -89,7 +92,10 @@ public class SecurityConfig {
         );
 
         // csrf disable
-        http.csrf(AbstractHttpConfigurer::disable);
+        // http.csrf(AbstractHttpConfigurer::disable);
+
+        // csrf token repository 설정
+        http.csrf(csrf -> csrf.csrfTokenRepository(httpSessionCsrfTokenRepository));
 
         // session management
         http.sessionManagement(session -> session

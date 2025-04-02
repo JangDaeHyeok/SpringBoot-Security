@@ -74,6 +74,9 @@
 </div>
 
 <form id="delFrm" name="delFrm" action="/delete" method="post">
+    <!-- csrf token -->
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+
     <input type="hidden" name="id" th:value="${userInfo.id()}">
 </form>
 
